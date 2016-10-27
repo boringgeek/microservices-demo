@@ -30,6 +30,7 @@ end.join(" ")
 log(:info, "Running test!")
 cmd = ["docker run",
        "--rm",
+       "--net=host",
        envs,
        "-v/var/run/docker.sock:/var/run/docker.sock",
        "-v#{File.expand_path("../../..", __FILE__)}:/repo/",

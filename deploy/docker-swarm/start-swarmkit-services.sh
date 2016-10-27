@@ -11,21 +11,20 @@ set -o pipefail
 # versions of Docker or clusters uses the previous Swarm functionality.
 
 
-function usage() {
+usage() {
     echo "usage: $(basename $0) [cleanup]"
     echo "  The cleanup option will remove previously launched services"
 }
 
-function command_exists() {
+command_exists() {
     command -v "$@" > /dev/null 2>&1
 }
 
-function cleanup_services() {
-    for srvc in front-end catalogue catalogue-db user user-db cart cart-db orders orders-db shipping payment
+cleanup_services() {
+    for srvc in front-end catalogue catalogue-db user user-db cart cart-db orders orders-db shipping payment rabbitmq
     do
       docker service rm $srvc
     done
-
 }
 
 if [ "$1" == "help" ]; then 
@@ -98,6 +97,12 @@ docker service create \
        --name orders \
        --network ingress \
        weaveworksdemos/orders:latest
+
+echo "Creating rabbitmq service"
+docker service create \
+      --name rabbitmq \
+      --network ingress \
+      rabbitmq:3
 
 echo "Creating orders-db service"
 docker service create \
