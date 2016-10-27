@@ -79,7 +79,8 @@ echo "Creating user service"
 docker service create \
        --name user \
        --network ingress \
-       weaveworksdemos/user:latest
+       weaveworksdemos/user:snapshot
+
 
 
 echo "Creating user-db service"
@@ -104,7 +105,14 @@ echo "Creating orders service"
 docker service create \
        --name orders \
        --network ingress \
-       weaveworksdemos/orders:latest
+       weaveworksdemos/orders:snapshot
+
+echo "Creating rabbitmq service"
+docker service create \
+      --name rabbitmq \
+      --network ingress \
+      rabbitmq:3
+
 
 echo "Creating rabbitmq service"
 docker service create \
@@ -123,11 +131,12 @@ echo "Creating shipping service"
 docker service create \
        --name shipping \
        --network ingress \
-       weaveworksdemos/shipping:latest
+       weaveworksdemos/shipping:snapshot
+
 
 
 echo "Creating payment service"
 docker service create \
        --name payment \
        --network ingress \
-       weaveworksdemos/payment:latest
+       weaveworksdemos/payment:snapshot

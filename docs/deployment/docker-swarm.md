@@ -52,7 +52,7 @@ You may also choose to run the following command to check the health of the depl
         i=$((i+1))
     done
 
-    cat output.txt 2>/dev/null | jq 2>/dev/null
+    cat output.txt | jq && rm output.txt
 
     if [ $STATUS -ne 200 ]; then
         echo "$(tput setaf 1)DEPLOY FAILED$(tput sgr0)"
@@ -66,6 +66,5 @@ You may also choose to run the following command to check the health of the depl
 <!-- deploy-test-start destroy-infrastructure -->
 
     sh ./start-swarmkit-services.sh cleanup
-    rm output.txt
 
 <!-- deploy-test-end -->
