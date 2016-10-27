@@ -32,6 +32,7 @@ if [ "$1" == "help" ]; then
     exit 0
 fi
 
+
 if ! command_exists "docker" ; then
     echo "Please ensure that docker command is on the \$PATH"
     exit 1
@@ -43,18 +44,27 @@ if [ "$1" == "cleanup" ]; then
     exit 0;
 fi
 
+echo "Create nginx edge-router"
+docker service create \
+       --publish '80:80' \
+       --mode global \
+       --name edge-router \
+       weaveworksdemos/edge-router
 
 echo "Creating front-end service"
 docker service create \
-       --publish 8079 \
-       --mode global \
-       --name front-end weaveworksdemos/front-end:latest
+       --name front-end \
+       --network ingress \
+       weaveworksdemos/front-end:latest
+
+
 
 echo "Creating catalogue service"
 docker service create \
        --name catalogue \
        --network ingress \
-       weaveworksdemos/catalogue:latest
+       weaveworksdemos/catalogue
+
 
 echo "Creating catalogue-db service"
 docker service create \
@@ -71,12 +81,12 @@ docker service create \
        --network ingress \
        weaveworksdemos/user:latest
 
+
 echo "Creating user-db service"
 docker service create \
        --name user-db \
        --network ingress \
        weaveworksdemos/user-db:latest
-
 
 echo "Creating cart service"
 docker service create \
@@ -84,13 +94,11 @@ docker service create \
        --network ingress \
        weaveworksdemos/cart:latest
 
-
 echo "Creating cart-db service"
 docker service create \
        --name cart-db \
        --network ingress \
        mongo:3.2
-
 
 echo "Creating orders service"
 docker service create \
@@ -104,6 +112,7 @@ docker service create \
       --network ingress \
       rabbitmq:3
 
+
 echo "Creating orders-db service"
 docker service create \
        --name orders-db \
@@ -115,6 +124,7 @@ docker service create \
        --name shipping \
        --network ingress \
        weaveworksdemos/shipping:latest
+
 
 echo "Creating payment service"
 docker service create \
