@@ -67,6 +67,7 @@ You may also choose to run the following command to check the health of the depl
 
     docker-compose down
     weave stop
+    rm output.txt
    
 <!-- deploy-test-end -->
 

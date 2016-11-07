@@ -66,5 +66,6 @@ You may also choose to run the following command to check the health of the depl
 <!-- deploy-test-start destroy-infrastructure -->
 
     sh ./start-swarmkit-services.sh cleanup
+    rm output.txt
 
 <!-- deploy-test-end -->

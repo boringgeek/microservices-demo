@@ -2,7 +2,7 @@ version: '2'
 
 services:
   front-end:
-    image: weaveworksdemos/front-end
+    image: weaveworksdemos/front-end:snapshot
     hostname: front-end
     restart: always
     cap_drop:
@@ -31,7 +31,7 @@ services:
     environment:
       - reschedule=on-node-failure
   catalogue:
-    image: weaveworksdemos/catalogue
+    image: weaveworksdemos/catalogue:snapshot
     hostname: catalogue
     restart: always
     cap_drop:
@@ -51,7 +51,7 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=socksdb
   cart:
-    image: weaveworksdemos/cart
+    image: weaveworksdemos/cart:snapshot
     hostname: cart
     restart: always
     cap_drop:
@@ -79,7 +79,7 @@ services:
     environment:
       - reschedule=on-node-failure
   orders:
-    image: weaveworksdemos/orders
+    image: weaveworksdemos/orders:snapshot
     hostname: orders
     restart: always
     cap_drop:
@@ -107,7 +107,7 @@ services:
     environment:
       - reschedule=on-node-failure
   shipping:
-    image: weaveworksdemos/shipping
+    image: weaveworksdemos/shipping:snapshot
     hostname: shipping
     restart: always
     cap_drop:
@@ -120,7 +120,7 @@ services:
     environment:
       - reschedule=on-node-failure
   queue-master:
-    image: weaveworksdemos/queue-master
+    image: weaveworksdemos/queue-master:snapshot
     hostname: queue-master
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -149,7 +149,7 @@ services:
     environment:
       - reschedule=on-node-failure
   payment:
-    image: weaveworksdemos/payment
+    image: weaveworksdemos/payment:snapshot
     hostname: payment
     restart: always
     cap_drop:
@@ -160,7 +160,7 @@ services:
     environment:
       - reschedule=on-node-failure
   user:
-    image: weaveworksdemos/user
+    image: weaveworksdemos/user:snapshot
     hostname: user
     restart: always
     cap_drop:
