@@ -42,10 +42,10 @@ It will run when the compose is started up, after a delay of 60s. This is a load
 This will send some traffic to the application, which will form the connection graph that you view in Scope or Weave Cloud. 
 
 You may also choose to run the following command to check the health of the deployment.
+
     curl http://localhost/health?nodes=user,catalogue,queue-master,cart,shipping,payment,orders 
 
 <!-- deploy-test-hidden run-tests
-
     sleep 60
 
     STATUS=$(curl -s -o output.txt -w "%{http_code}" http://localhost/health?nodes=user,catalogue,queue-master,cart,shipping,payment,orders)
@@ -56,6 +56,7 @@ You may also choose to run the following command to check the health of the depl
         echo "$(tput setaf 1)DEPLOY FAILED$(tput sgr 0)"
         exit 1
     fi
+
 -->
 
 ### Cleaning up

@@ -19,18 +19,39 @@ Running global plugins is not supported either.
 
 ### Pre-requisities
 
-* Docker For Mac (limited to a single node)
+* Docker
+* Vagrant
+* Virtualbox
+* Packer
+* Terraform
 
-### How-to using Docker For Mac
+### Docker Swarm (Single-Node)
 
 * Put your docker into the swarm mode
-* Execute the services startup script
 * Navigate to <a href="http://localhost" target="_blank">http://localhost</a> to verify that the demo works.
 
 <!-- deploy-test-start pre-install -->
 
-    docker swarm init 2>/dev/null
-    sh ./start-swarmkit-services.sh
+    docker swarm init  
+    docker-compose pull
+    docker-compose bundle
+    docker deploy dockerswarm
+
+
+### Docker Swarm (Multi-Node)
+
+    1) AWS
+        packer build -only=amazon-ebs packer/packer.json
+        terraform plan terraform/aws
+        terraform apply terraform/aws
+    2) gcloud
+        packer build -only=googlecompute packer/packer.json
+        terraform plan terraform/gcloud
+        terraform apply terraform/gcloud
+    3) Local
+        packer build -only=virtualbox-iso local packer/packer.json
+        terraform plan terraform/local
+        terraform apply terraform/local
 
 <!-- deploy-test-end -->
 
@@ -65,7 +86,7 @@ You may also choose to run the following command to check the health of the depl
 
 <!-- deploy-test-start destroy-infrastructure -->
 
-    sh ./start-swarmkit-services.sh cleanup
+    docker stack rm dockerswarm
     rm output.txt
 
 <!-- deploy-test-end -->
