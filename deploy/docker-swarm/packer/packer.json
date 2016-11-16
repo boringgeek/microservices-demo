@@ -15,8 +15,9 @@
         "ami_name": "docker-swarm"
     },{
         "type": "googlecompute",
-        "project_id": "docker-swarm",
-        "source_image": "ubuntu-1604-lts",
+        "project_id": "container-solutions",
+        "source_image": "ubuntu-1604-xenial-v20161020",
+        "image_name": "docker-swarm",
         "zone": "europe-west1-b"
     },{
         "type": "virtualbox-iso",
