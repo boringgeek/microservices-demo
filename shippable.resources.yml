@@ -12,20 +12,20 @@ resources:
     integration: shippable-aws
     pointer:
       sourceName : "ecs-weave-shippable-demo"
-      region: "us-east-1"
+      region: "us-west-2"
 
 # AWS ALB target group for TEST environment
   - name: alb-front-end-test     #required
     type: loadBalancer      #required
     pointer:
-      sourceName: "arn:aws:elasticloadbalancing:us-east-1:288971733297:targetgroup/frontendTESTTG/fe54ae69c943248e"
+      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendTESTTG/45c5d1d1669bd5f4"
       method: application
 
 # AWS ALB target group for PROD environment
   - name: alb-front-end-prod     #required
     type: loadBalancer      #required
     pointer:
-      sourceName: "arn:aws:elasticloadbalancing:us-east-1:288971733297:targetgroup/frontendPRODTG/65357ac44fd57b1c"
+      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendPRODTG/f77c0cd47dc2d83b"
       method: application
 
 ################################
@@ -65,7 +65,7 @@ resources:
   - name: img-front-end
     type: image
     pointer:
-      sourceName: 288971733297.dkr.ecr.us-east-1.amazonaws.com/front-end
+      sourceName: 606199732329.dkr.ecr.us-west-2.amazonaws.com/front-end
       isPull: false
     seed:
       versionName: master.20
