@@ -18,14 +18,14 @@ resources:
   - name: alb-front-end-test     #required
     type: loadBalancer      #required
     pointer:
-      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendTESTTG/f52fb345f0bd8c93"
+      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendTESTTG/f8d6006cab6dfe18"
       method: application
 
 # AWS ALB target group for PROD environment
   - name: alb-front-end-prod     #required
     type: loadBalancer      #required
     pointer:
-      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendPRODTG/a124187f9a6ca9aa"
+      sourceName: "arn:aws:elasticloadbalancing:us-west-2:606199732329:targetgroup/frontendPRODTG/242d31f7a5af0251"
       method: application
 
 ################################
